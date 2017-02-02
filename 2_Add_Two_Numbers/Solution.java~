@@ -1,0 +1,49 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+import java.util.*;
+public class Solution {
+    public LinkedList<Integer> addTwoNumbers(LinkedList<Integer> l1, LinkedList<Integer> l2) {
+	LinkedList<Integer> result = new LinkedList<Integer>();
+	int added = 0;
+	Iterator<Integer> iter1 = l1.iterator();
+	Iterator<Integer> iter2 = l2.iterator();
+
+	while(iter1.hasNext() && iter2.hasNext()){
+	    int a = iter1.next();
+	    int b = iter2.next();
+
+	    int sum = (a + b + added) % 10;
+	    result.add(sum);
+	    added = (int)(sum/10);	    
+	}
+
+	return result;
+    }
+    public static void main(String[] args) {
+	LinkedList<Integer> list1 = new LinkedList<Integer>();
+	LinkedList<Integer> list2 = new LinkedList<Integer>();
+	Solution solution = new Solution();
+
+	list1.addFirst(3);
+	list1.addFirst(4);
+	list1.addFirst(2);
+
+	list2.addFirst(4);
+	list2.addFirst(6);
+	list2.addFirst(5);
+
+	LinkedList<Integer> list3 = solution.addTwoNumbers(list1, list2);
+	
+	Iterator<Integer> iter = list3.iterator();
+
+	while(iter.hasNext()) {
+	    System.out.println(iter.next());
+	}
+    }
+}
